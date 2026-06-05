@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# Beigoma Battle (ベーゴマバトル)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ReactとMatter.jsを使用した、物理演算ベースのベーゴマ対戦シミュレーションゲームです。
+<img width="1272" height="848" alt="スクリーンショット 2026-06-05 204358" src="https://github.com/user-attachments/assets/407ba6e2-c017-4a39-a9cf-f6aff0cd2220" />
 
-Currently, two official plugins are available:
+## 概要
+マウスドラッグでベーゴマをシュートし、フィールド上の相手とぶつかり合って競い合う2D物理アクションゲームです。回転の減衰や衝突判定を物理エンジンによって再現しています。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 特徴
+- **物理演算**: Matter.jsによるリアルな衝突と跳ね返り挙動。
+- **直感的操作**: マウスドラッグによるシュート操作とパワー調整。
+- **勝敗判定**: フィールドアウトや回転停止を自動的に検知。
+- **軽量なUI**: Canvasへの直接描画によるパフォーマンス最適化。
 
-## React Compiler
+## 開発環境
+- **Framework**: React (Vite)
+- **Language**: TypeScript
+- **Physics Engine**: Matter.js
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## セットアップ手順
 
-## Expanding the ESLint configuration
+プロジェクトをクローンした後、以下のコマンドで実行可能です。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 依存関係のインストール
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 開発サーバーの起動
+npm run dev
+遊び方
+画面上のベーゴマをマウスでクリックします。
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+そのままドラッグしてシュート方向と強さを決めます。
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+マウスを離すとベーゴマがフィールドへ飛び出します！
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+相手を場外に弾き飛ばすか、相手より長く回転し続ければ勝利です。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+今後の拡張予定
+[ ] 必殺技ゲージの実装
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+[ ] AI対戦モードの追加
+
+[ ] ローカル対戦（2プレイヤー）対応
